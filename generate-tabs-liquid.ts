@@ -3,9 +3,9 @@ import { readFileSync, writeFileSync } from 'fs';
 import { SectionSchema } from './tabs/schema';
 
 function generateLiquid(schema: SectionSchema, content: string, jsFile: string) {
-    const jsContent = readFileSync(jsFile, 'utf-8');
+  const jsContent = readFileSync(jsFile, 'utf-8');
 
-    const liquid = `
+  const liquid = `
     {% schema %}
     {
       "name": "Tabs",
@@ -18,19 +18,19 @@ function generateLiquid(schema: SectionSchema, content: string, jsFile: string) 
             {
               "id": "tab_title",
               "type": "text",
-              "label": "${schema.text.label}",
-              "default": "${schema.text.default || 'Default tab text'}"
+              "label": "${schema.settings.text.label}",
+              "default": "${schema.settings.text.default || 'Default tab text'}"
             },
             {
               "id": "tab_content",
               "type": "richtext",
-              "label": "${schema.content.label}"
+              "label": "${schema.settings.content.label}"
             },
             {
               "id": "tab_color",
               "type": "color",
-              "label": "${schema.color.label}",
-              "default": "${schema.color.default || '#000000'}"
+              "label": "${schema.settings.color.label}",
+              "default": "${schema.settings.color.default || '#000000'}"
             }
           ]
         }
@@ -44,16 +44,21 @@ function generateLiquid(schema: SectionSchema, content: string, jsFile: string) 
     <script>${jsContent}</script>
   `;
 
-    const outputPath = './theme/sections/tabs.liquid';
-    writeFileSync(outputPath, liquid);
-    console.log(`Generated ${outputPath}`);
+  const outputPath = './theme/sections/tabs.liquid';
+  writeFileSync(outputPath, liquid);
+  console.log(`Generated ${outputPath}`);
 }
 
 // Example usage
 const schema: SectionSchema = {
+  settings: {
     text: { type: 'text', label: 'Tab Title' },
     content: { type: 'richtext', label: 'Tab Content' },
     color: { type: 'color', label: 'Tab Color' }
+  },
+  blocks: [
+
+  ]
 };
 
 const content = readFileSync('./tabs/content.liquid', 'utf-8');

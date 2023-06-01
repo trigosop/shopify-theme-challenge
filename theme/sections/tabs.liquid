@@ -32,7 +32,19 @@
     }
     {% endschema %}
 
-    <div class="tabs">
+    {%- capture block_settings -%}
+  [
+    {%- for block in section.blocks -%}
+     {{ block.settings }}{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+{%- endcapture -%}
+
+<div
+  class="tabs tabs-section"
+  data-section-settings="{{ section.settings }}"
+  data-section-blocks="{{ block_settings }}"
+>
   <div class="tab-header bg-gray-200 py-2 px-4">
     {% for block in section.blocks %}
       <button

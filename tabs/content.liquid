@@ -1,4 +1,24 @@
-<div class="tabs">
+{%- capture block_settings -%}
+  [
+    {%- for block in section.blocks -%}
+     {{ block.settings }}{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+{%- endcapture -%}
+
+<div
+  class="tabs tabs-section"
+  data-section-settings="{{ section.settings }}"
+  {% comment %}
+    There is an issue with this section.blocks data that is not being possible to parse and be usable when the tsx component get it.
+  {% endcomment %}
+  {% comment %} data-section-blocks="{{ section.blocks }}" {% endcomment %}
+
+  {% comment %}
+    Here I tried to use it through the capture but the result is not possible to parse with json filter
+  {% endcomment %}
+  data-section-blocks="{{ block_settings | json }}"
+>
   <div class="tab-header bg-gray-200 py-2 px-4">
     {% for block in section.blocks %}
       <button
