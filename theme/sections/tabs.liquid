@@ -1,49 +1,70 @@
-<div class="tabs">
+
+    {% schema %}
+    {
+      "name": "Tabs",
+      "settings": [],
+      "blocks": [
+        {
+          "type": "tab",
+          "name": "Tab",
+          "settings": [
+            {
+              "id": "tab_title",
+              "type": "text",
+              "label": "Tab Title",
+              "default": "Default tab text"
+            },
+            {
+              "id": "tab_content",
+              "type": "richtext",
+              "label": "Tab Content"
+            },
+            {
+              "id": "tab_color",
+              "type": "color",
+              "label": "Tab Color",
+              "default": "#000000"
+            }
+          ]
+        }
+      ],
+      "presets": []
+    }
+    {% endschema %}
+
+    <div class="tabs">
   <div class="tab-header bg-gray-200 py-2 px-4">
-    <button
-      class="tab-button bg-blue-200 text-blue-800 hover:bg-blue-300 hover:text-blue-900 focus:bg-blue-300 focus:text-blue-900"
-      onclick="changeTab(event, 'tab1')"
-    >
-      Tab 1
-    </button>
-    <button
-      class="tab-button bg-green-200 text-green-800 hover:bg-green-300 hover:text-green-900 focus:bg-green-300 focus:text-green-900"
-      onclick="changeTab(event, 'tab2')"
-    >
-      Tab 2
-    </button>
-    <button
-      class="tab-button bg-pink-200 text-pink-800 hover:bg-pink-300 hover:text-pink-900 focus:bg-pink-300 focus:text-pink-900"
-      onclick="changeTab(event, 'tab3')"
-    >
-      Tab 3
-    </button>
+    {% for block in section.blocks %}
+      <button
+        class="tab-button bg-[{{ block.settings.tab_color }}]-200 text-[{{ block.settings.tab_color }}]-800 hover:bg-[{{ block.settings.tab_color }}]-300 hover:text-[{{ block.settings.tab_color }}]-900 focus:bg-[{{block.settings.tab_color}}]-300 focus:text-[{{block.settings.tab_color}}]-900"
+        onclick="changeTab(event, 'tab{{ forloop.index }}')"
+      >
+        {{ block.settings.tab_title }}
+      </button>
+    {% endfor %}
   </div>
+
   <div class="tab-content p-4">
-    <div id="tab1" class="tab-item hidden">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, architecto!
-    </div>
-    <div id="tab2" class="tab-item hidden">
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt omnis quas iste atque molestiae laborum.
-    </div>
-    <div id="tab3" class="tab-item hidden">
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, cum. Minus cumque est facere repellat assumenda,
-      sunt nesciunt quis in.
-    </div>
+    {% for block in section.blocks %}
+      <div id="tab{{ forloop.index }}" class="tab-item hidden">
+        {{ block.settings.tab_content }}
+      </div>
+    {% endfor %}
   </div>
 </div>
 
-<script>
-  function changeTab(event, tabId) {
-    const tabItems = document.querySelectorAll('.tab-item');
-    tabItems.forEach((item) => (item.style.display = 'none'));
 
-    const tabButtons = document.querySelectorAll('.tab-button');
-    tabButtons.forEach((button) => button.classList.remove('active'));
+    <script>function changeTab(event, tabId) {
+  const tabItems = document.querySelectorAll('.tab-item');
+  tabItems.forEach((item) => (item.style.display = 'none'));
 
-    const selectedTab = document.getElementById(tabId);
-    selectedTab.style.display = 'block';
+  const tabButtons = document.querySelectorAll('.tab-button');
+  tabButtons.forEach((button) => button.classList.remove('active'));
 
-    event.target.classList.add('active');
-  }
+  const selectedTab = document.getElementById(tabId);
+  selectedTab.style.display = 'block';
+
+  event.target.classList.add('active');
+}
 </script>
+  

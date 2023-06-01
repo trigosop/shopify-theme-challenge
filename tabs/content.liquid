@@ -1,0 +1,20 @@
+<div class="tabs">
+  <div class="tab-header bg-gray-200 py-2 px-4">
+    {% for block in section.blocks %}
+      <button
+        class="tab-button bg-[{{ block.settings.tab_color }}]-200 text-[{{ block.settings.tab_color }}]-800 hover:bg-[{{ block.settings.tab_color }}]-300 hover:text-[{{ block.settings.tab_color }}]-900 focus:bg-[{{block.settings.tab_color}}]-300 focus:text-[{{block.settings.tab_color}}]-900"
+        onclick="changeTab(event, 'tab{{ forloop.index }}')"
+      >
+        {{ block.settings.tab_title }}
+      </button>
+    {% endfor %}
+  </div>
+
+  <div class="tab-content p-4">
+    {% for block in section.blocks %}
+      <div id="tab{{ forloop.index }}" class="tab-item hidden">
+        {{ block.settings.tab_content }}
+      </div>
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,43 @@
+{
+  "sections": {
+    "main": {
+      "type": "tabs",
+      "blocks": {
+        "8c1a3d97-0481-433d-9507-43de1d326e37": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Tab 1",
+            "tab_content": "<p>tab 1 content<\/p>",
+            "tab_color": "#d21c1c"
+          }
+        },
+        "45c70245-0bc1-473b-a53b-48ce410fb812": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Tab 2",
+            "tab_content": "<p>tab 2 content<\/p>",
+            "tab_color": "#3aa454"
+          }
+        },
+        "a2291d29-7a45-4003-a7b7-95f8c46d6811": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Tab 3",
+            "tab_content": "<p>tab 3 content<\/p>",
+            "tab_color": "#2d96a1"
+          }
+        }
+      },
+      "block_order": [
+        "8c1a3d97-0481-433d-9507-43de1d326e37",
+        "45c70245-0bc1-473b-a53b-48ce410fb812",
+        "a2291d29-7a45-4003-a7b7-95f8c46d6811"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
