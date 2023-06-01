@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>
+      {{ page_title }}
+      {% if current_page != null %} &mdash; {{ shop.name }}{% endif %}
+    </title>
+    {{ content_for_header }}
+  </head>
+  <body class="bg-slate-400">
+    {{ content_for_layout }}
+  </body>
+</html>

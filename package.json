@@ -1,0 +1,14 @@
+{
+  "name": "shopify-theme-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "theme:push": "shopify theme push --path=theme",
+    "theme:pull": "shopify theme pull --path=theme",
+    "theme:dev": "shopify theme dev --path=theme --theme-editor-sync"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
